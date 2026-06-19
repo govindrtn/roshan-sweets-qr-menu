@@ -1,75 +1,78 @@
-import { useEffect, useMemo, useState } from 'react'
-import Header from './components/Header'
-import MenuCard from './components/MenuCard'
-import RestaurantDetails from './components/RestaurantDetails'
-import QRPreview from './components/QRPreview'
-import Footer from './components/Footer'
-import { categories, menuItems } from './data/menuData'
-import { categoryLabels, englishMenu } from './data/menuTranslations'
+import { useEffect, useMemo, useState } from "react";
+import Header from "./components/Header";
+import MenuCard from "./components/MenuCard";
+import RestaurantDetails from "./components/RestaurantDetails";
+import QRPreview from "./components/QRPreview";
+import Footer from "./components/Footer";
+import BrandStory from "./components/BrandStory";
+import { categories, menuItems } from "./data/menuData";
+import { categoryLabels, englishMenu } from "./data/menuTranslations";
+import { menuImages } from "./data/menuImages";
 
 function App() {
-  const [language, setLanguage] = useState('en')
-  const [activeCategory, setActiveCategory] = useState(categories[0])
-  const [searchTerm, setSearchTerm] = useState('')
-  const [showScrollTop, setShowScrollTop] = useState(false)
-  const isHindi = language === 'hi'
+  const [language, setLanguage] = useState("en");
+  const [activeCategory, setActiveCategory] = useState(categories[0]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [showScrollTop, setShowScrollTop] = useState(false);
+  const isHindi = language === "hi";
 
   useEffect(() => {
-    document.documentElement.lang = language
+    document.documentElement.lang = language;
     document.title = isHindi
-      ? 'रोशन स्वीट्स | डिजिटल मेन्यू'
-      : 'Roshan Sweets | Digital Menu'
-  }, [isHindi, language])
+      ? "रोशन स्वीट्स | डिजिटल मेन्यू"
+      : "Roshan Sweets | Digital Menu";
+  }, [isHindi, language]);
 
   useEffect(() => {
-    const handleScroll = () => setShowScrollTop(window.scrollY > 500)
+    const handleScroll = () => setShowScrollTop(window.scrollY > 500);
 
-    handleScroll()
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const localizedItems = useMemo(
     () =>
       menuItems.map((item) => {
-        const englishItem = englishMenu[item.id]
-        const localizedItem = isHindi ? item : { ...item, ...englishItem }
+        const englishItem = englishMenu[item.id];
+        const localizedItem = isHindi ? item : { ...item, ...englishItem };
 
         return {
           ...localizedItem,
+          image: menuImages[item.id],
           searchText: [
             item.name,
             item.description,
             englishItem.name,
             englishItem.description,
           ]
-            .join(' ')
+            .join(" ")
             .toLowerCase(),
-        }
+        };
       }),
     [isHindi],
-  )
+  );
 
   const filteredItems = useMemo(() => {
-    const query = searchTerm.trim().toLowerCase()
+    const query = searchTerm.trim().toLowerCase();
 
     return localizedItems.filter(
       (item) =>
         (query || item.category === activeCategory) &&
         (!query || item.searchText.includes(query)),
-    )
-  }, [activeCategory, localizedItems, searchTerm])
+    );
+  }, [activeCategory, localizedItems, searchTerm]);
 
   const toggleLanguage = () => {
-    setLanguage((current) => (current === 'en' ? 'hi' : 'en'))
-    setSearchTerm('')
-  }
+    setLanguage((current) => (current === "en" ? "hi" : "en"));
+    setSearchTerm("");
+  };
 
   return (
     <div className="site-shell min-h-screen text-zinc-900">
       <Header language={language} onToggleLanguage={toggleLanguage} />
 
-      <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:pb-16">
+      <main className="mx-auto max-w-7xl px-4 pb-8 pt-5 sm:px-6 sm:pb-12 sm:pt-7 lg:px-8 lg:pb-16">
         <section
           id="menu"
           className="menu-toolbar mb-6 scroll-mt-24 rounded-[2rem] border border-white/80 bg-white/90 p-5 shadow-[0_20px_60px_rgba(124,45,18,0.08)] backdrop-blur-xl sm:p-6"
@@ -79,27 +82,27 @@ function App() {
             <div>
               <div className="mb-2 inline-flex items-center gap-2 rounded-full bg-orange-100 px-3 py-1 text-[11px] font-black uppercase tracking-[0.18em] text-orange-700">
                 <span className="live-dot h-2 w-2 rounded-full bg-orange-600" />
-                {isHindi ? 'ताज़ा और स्वादिष्ट' : 'Fresh & delicious'}
+                {isHindi ? "ताज़ा और स्वादिष्ट" : "Fresh & delicious"}
               </div>
               <h2
                 id="menu-heading"
                 className="language-heading text-3xl font-black tracking-[-0.04em] text-zinc-950 sm:text-4xl"
               >
-                {isHindi ? 'रोशन स्वीट्स' : 'Roshan Sweets'}{' '}
+                {isHindi ? "रोशन स्वीट्स" : "Roshan Sweets"}{" "}
                 <span className="text-orange-600">
-                  {isHindi ? 'मेन्यू' : 'Menu'}
+                  {isHindi ? "मेन्यू" : "Menu"}
                 </span>
               </h2>
               <p className="mt-1 text-sm font-medium text-zinc-500">
                 {isHindi
-                  ? 'नाश्ता, नमकीन और मिठाई—सब एक ही जगह।'
-                  : 'Snacks, namkeen and sweets—all in one place.'}
+                  ? "नाश्ता, नमकीन और मिठाई—सब एक ही जगह।"
+                  : "Snacks, namkeen and sweets—all in one place."}
               </p>
             </div>
 
             <label className="search-box relative block w-full md:max-w-md">
               <span className="sr-only">
-                {isHindi ? 'मेन्यू में खोजें' : 'Search the menu'}
+                {isHindi ? "मेन्यू में खोजें" : "Search the menu"}
               </span>
               <svg
                 className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-orange-500"
@@ -118,8 +121,8 @@ function App() {
                 onChange={(event) => setSearchTerm(event.target.value)}
                 placeholder={
                   isHindi
-                    ? 'समोसा, नमकीन या मिठाई खोजें...'
-                    : 'Search samosa, namkeen or sweets...'
+                    ? "समोसा, नमकीन या मिठाई खोजें..."
+                    : "Search samosa, namkeen or sweets..."
                 }
                 className="w-full rounded-2xl border border-orange-200 bg-orange-50/60 py-4 pl-12 pr-4 text-sm font-semibold shadow-inner outline-none transition duration-300 placeholder:text-zinc-400 focus:border-orange-500 focus:bg-white focus:ring-4 focus:ring-orange-100"
               />
@@ -132,16 +135,16 @@ function App() {
                 key={category}
                 type="button"
                 onClick={() => {
-                  setActiveCategory(category)
-                  setSearchTerm('')
+                  setActiveCategory(category);
+                  setSearchTerm("");
                   document
-                    .getElementById('menu-items')
-                    ?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                    .getElementById("menu-items")
+                    ?.scrollIntoView({ behavior: "smooth", block: "start" });
                 }}
                 className={`category-button language-button shrink-0 rounded-full px-5 py-2.5 text-sm font-black transition duration-300 ${
                   activeCategory === category && !searchTerm
-                    ? 'category-button-active bg-zinc-950 text-white shadow-lg shadow-zinc-300'
-                    : 'border border-orange-200 bg-orange-50 text-orange-700 hover:-translate-y-0.5 hover:bg-orange-100'
+                    ? "category-button-active bg-zinc-950 text-white shadow-lg shadow-zinc-300"
+                    : "border border-orange-200 bg-orange-50 text-orange-700 hover:-translate-y-0.5 hover:bg-orange-100"
                 }`}
               >
                 {categoryLabels[language][category]}
@@ -158,15 +161,15 @@ function App() {
             <div className="dashboard-panel-heading sticky top-[84px] z-20 mb-4 flex items-center justify-between rounded-2xl border border-orange-100/80 bg-white/95 px-4 py-3 shadow-sm backdrop-blur-xl lg:-mx-1 lg:-mt-1">
               <div>
                 <p className="text-xs font-black uppercase tracking-[0.2em] text-orange-600">
-                  {isHindi ? 'मेन्यू सूची' : 'Menu list'}
+                  {isHindi ? "मेन्यू सूची" : "Menu list"}
                 </p>
                 <p className="mt-1 text-sm font-semibold text-zinc-500">
-                  {filteredItems.length}{' '}
+                  {filteredItems.length}{" "}
                   {isHindi
-                    ? `आइटम ${searchTerm ? 'मिले' : `— ${categoryLabels.hi[activeCategory]}`}`
-                    : `${filteredItems.length === 1 ? 'item' : 'items'} ${
+                    ? `आइटम ${searchTerm ? "मिले" : `— ${categoryLabels.hi[activeCategory]}`}`
+                    : `${filteredItems.length === 1 ? "item" : "items"} ${
                         searchTerm
-                          ? 'found'
+                          ? "found"
                           : `in ${categoryLabels.en[activeCategory]}`
                       }`}
                 </p>
@@ -174,10 +177,10 @@ function App() {
               {searchTerm && (
                 <button
                   type="button"
-                  onClick={() => setSearchTerm('')}
+                  onClick={() => setSearchTerm("")}
                   className="language-button rounded-full bg-zinc-950 px-4 py-2 text-xs font-black text-white transition duration-300 hover:-translate-y-0.5 hover:bg-orange-600"
                 >
-                  {isHindi ? 'खोज हटाएँ' : 'Clear search'}
+                  {isHindi ? "खोज हटाएँ" : "Clear search"}
                 </button>
               )}
             </div>
@@ -199,12 +202,12 @@ function App() {
                   🔎
                 </p>
                 <h3 className="mt-4 text-xl font-black">
-                  {isHindi ? 'आइटम नहीं मिला' : 'Item not found'}
+                  {isHindi ? "आइटम नहीं मिला" : "Item not found"}
                 </h3>
                 <p className="mt-1 text-sm text-zinc-500">
                   {isHindi
-                    ? 'किसी दूसरे आइटम का नाम खोजकर देखें।'
-                    : 'Try searching for another item.'}
+                    ? "किसी दूसरे आइटम का नाम खोजकर देखें।"
+                    : "Try searching for another item."}
                 </p>
               </div>
             )}
@@ -215,24 +218,26 @@ function App() {
             <QRPreview language={language} />
           </aside>
         </div>
+
+        <BrandStory language={language} />
       </main>
 
       <Footer language={language} />
 
       <button
         type="button"
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        aria-label={isHindi ? 'ऊपर जाएँ' : 'Back to top'}
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        aria-label={isHindi ? "ऊपर जाएँ" : "Back to top"}
         className={`scroll-top-button fixed bottom-5 right-5 z-40 grid h-12 w-12 place-items-center rounded-2xl bg-zinc-950 text-xl font-black text-white shadow-2xl shadow-zinc-950/25 transition duration-300 hover:-translate-y-1 hover:bg-orange-600 ${
           showScrollTop
-            ? 'pointer-events-auto translate-y-0 opacity-100'
-            : 'pointer-events-none translate-y-4 opacity-0'
+            ? "pointer-events-auto translate-y-0 opacity-100"
+            : "pointer-events-none translate-y-4 opacity-0"
         }`}
       >
         ↑
       </button>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

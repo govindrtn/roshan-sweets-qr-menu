@@ -1,14 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <defs>
-    <linearGradient id="a" x1="8" y1="6" x2="56" y2="60">
-      <stop stop-color="#fb923c"/>
-      <stop offset=".52" stop-color="#f97316"/>
-      <stop offset="1" stop-color="#c2410c"/>
-    </linearGradient>
-  </defs>
-  <rect x="3" y="3" width="58" height="58" rx="18" fill="url(#a)"/>
-  <rect x="7" y="7" width="50" height="50" rx="15" fill="none" stroke="#fdba74" stroke-opacity=".5"/>
-  <path d="M24 43V24h10.2c6 0 9.8 3.1 9.8 8 0 3.5-2.1 6.1-5.6 7.2L45 48h-7l-5.6-8H30v8h-6Zm6-9h4c2.5 0 4-1.1 4-3s-1.5-3-4-3h-4v6Z" fill="#fff"/>
-  <path d="m48 13 1.2 3.2L52.5 17l-3.3 1.2L48 21.5l-1.2-3.3-3.3-1.2 3.3-.8L48 13Z" fill="#fef3c7"/>
-  <path d="M19 50c7 5 19 5 26 0" fill="none" stroke="#fed7aa" stroke-width="2" stroke-linecap="round"/>
+  <rect x="3" y="3" width="58" height="58" rx="18" fill="#f7f2e5" stroke="#b88a32" stroke-width="2"/>
+  <g fill="none" stroke="#b88a32" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M32 8c-1 6-5 8-8 10 4 0 7 2 8 6 1-4 4-6 8-6-3-2-7-4-8-10Z"/>
+    <path d="M23 16c-5-2-8 1-10 4 4-1 7 0 9 3M41 16c5-2 8 1 10 4-4-1-7 0-9 3"/>
+  </g>
+  <text x="32" y="53" text-anchor="middle" fill="#0b4a36" font-family="Georgia,serif" font-size="37" font-weight="700">R</text>
 </svg>

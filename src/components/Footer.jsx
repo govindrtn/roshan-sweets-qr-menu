@@ -9,8 +9,8 @@ function Footer({ language }) {
   return (
     <footer className="relative overflow-hidden bg-zinc-950 px-4 py-10 text-center text-white">
       <div className="footer-glow absolute left-1/2 top-0 h-32 w-80 -translate-x-1/2 rounded-full bg-orange-500/15 blur-3xl" />
-      <div className="relative mx-auto mb-3 w-fit">
-        <Logo />
+      <div className="footer-logo-wrap relative mx-auto mb-4 w-fit">
+        <Logo footer />
       </div>
       <p className="language-label relative text-lg font-black">
         {isHindi ? 'रोशन' : 'Roshan'}{' '}

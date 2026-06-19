@@ -1,15 +1,17 @@
 const details = {
   en: [
-    { label: 'Owner', value: 'Ankit Agrawal' },
+    { label: 'Owners', value: 'Ravi Agrawal / Anoop Agrawal' },
     { label: 'Shop', value: 'Roshan Sweets' },
-    { label: 'Mobile', value: '+91 89626 26069' },
+    { label: 'Mobile 1', value: '+91 98063 23351' },
+    { label: 'Mobile 2', value: '+91 96305 29400' },
     { label: 'District', value: 'Raisen, Madhya Pradesh' },
     { label: 'PIN Code', value: '464651' },
   ],
   hi: [
-    { label: 'संचालक', value: 'अंकित अग्रवाल' },
+    { label: 'संचालक', value: 'रवि अग्रवाल / अनूप अग्रवाल' },
     { label: 'प्रतिष्ठान', value: 'रोशन स्वीट्स' },
-    { label: 'मोबाइल', value: '+91 89626 26069' },
+    { label: 'मोबाइल 1', value: '+91 98063 23351' },
+    { label: 'मोबाइल 2', value: '+91 96305 29400' },
     { label: 'जिला', value: 'रायसेन, मध्य प्रदेश' },
     { label: 'पिन कोड', value: '464651' },
   ],
@@ -88,13 +90,20 @@ function RestaurantDetails({ language }) {
         </p>
       </a>
 
-      <a
-        href="tel:+918962626069"
-        className="language-button mt-4 flex items-center justify-center gap-2 rounded-xl bg-orange-500 px-4 py-3.5 text-sm font-black text-white shadow-lg shadow-orange-950/40 transition duration-300 hover:-translate-y-0.5 hover:bg-orange-400"
-      >
-        <span aria-hidden="true">☎</span>{' '}
-        {isHindi ? 'कॉल करें' : 'Call'}: +91 89626 26069
-      </a>
+      <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-1">
+        <a
+          href="tel:+919806323351"
+          className="language-button flex items-center justify-center gap-2 rounded-xl bg-orange-500 px-3 py-3 text-xs font-black text-white shadow-lg shadow-orange-950/40 transition duration-300 hover:-translate-y-0.5 hover:bg-orange-400"
+        >
+          <span aria-hidden="true">☎</span> +91 98063 23351
+        </a>
+        <a
+          href="tel:+919630529400"
+          className="language-button flex items-center justify-center gap-2 rounded-xl border border-orange-400/30 bg-white/10 px-3 py-3 text-xs font-black text-white transition duration-300 hover:-translate-y-0.5 hover:bg-white/15"
+        >
+          <span aria-hidden="true">☎</span> +91 96305 29400
+        </a>
+      </div>
     </section>
   )
 }
