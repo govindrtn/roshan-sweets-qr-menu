@@ -2,7 +2,7 @@ import { QRCodeSVG } from 'qrcode.react'
 
 function QRPreview({ language }) {
   const isHindi = language === 'hi'
-  const menuUrl = window.location.origin + window.location.pathname
+  const menuUrl = 'https://roshan-sweets-menu.vercel.app'
 
   return (
     <section className="reveal-card qr-card relative overflow-hidden rounded-[2rem] border border-orange-200 bg-gradient-to-br from-orange-50 to-amber-100 p-5 text-center shadow-[0_20px_50px_rgba(234,88,12,0.1)]">
