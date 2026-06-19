@@ -37,6 +37,15 @@ function Footer({ language }) {
           </a>
         </p>
         <p>
+          {isHindi ? 'डेवलपर संपर्क:' : 'Developer Contact:'}{' '}
+          <a
+            href="tel:+918602443526"
+            className="font-black text-orange-400 underline decoration-orange-400/30 underline-offset-4 transition hover:text-orange-300"
+          >
+            +91 86024 43526
+          </a>
+        </p>
+        <p>
           {isHindi ? 'डिज़ाइन एवं डेवलपमेंट:' : 'Designed & Developed by'}{' '}
           <a
             href={instagramUrl}
