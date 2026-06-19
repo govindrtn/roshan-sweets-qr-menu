@@ -36,4 +36,6 @@ export const menuImages = {
   35: '/images/menu/malpua.jpg',
   36: '/images/menu/gajar-halwa.jpg',
   37: '/images/menu/coconut-laddu.jpg',
+  38: '/images/menu/cake.jpg',
+  39: '/images/menu/lassi.jpg',
 }

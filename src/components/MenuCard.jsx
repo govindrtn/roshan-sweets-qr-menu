@@ -30,9 +30,11 @@ function MenuCard({ item, index, language }) {
         <p className="mt-1 line-clamp-3 text-[11px] leading-4 text-zinc-500 sm:text-xs">
           {item.description}
         </p>
-        <p className="price-chip mt-auto w-fit rounded-lg bg-zinc-950 px-2.5 py-1 text-xs font-black text-white transition group-hover:bg-orange-600">
-          {item.price}
-        </p>
+        {item.price && (
+          <p className="price-chip mt-auto w-fit rounded-lg bg-zinc-950 px-2.5 py-1 text-xs font-black text-white transition group-hover:bg-orange-600">
+            {item.price}
+          </p>
+        )}
       </div>
     </article>
   )

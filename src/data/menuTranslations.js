@@ -3,11 +3,13 @@ export const categoryLabels = {
     नाश्ता: 'Snacks',
     नमकीन: 'Namkeen',
     मिठाई: 'Sweets',
+    पेय: 'Beverages',
   },
   hi: {
     नाश्ता: 'नाश्ता',
     नमकीन: 'नमकीन',
     मिठाई: 'मिठाई',
+    पेय: 'पेय',
   },
 }
 
@@ -196,5 +198,13 @@ export const englishMenu = {
     name: 'Coconut Laddu',
     description: 'Soft traditional laddu made with fresh coconut.',
     price: '₹300 / kg',
+  },
+  38: {
+    name: 'Cake',
+    description: 'Fresh cream and chocolate cake for every special occasion.',
+  },
+  39: {
+    name: 'Lassi',
+    description: 'Thick, chilled and creamy traditional sweet lassi.',
   },
 }

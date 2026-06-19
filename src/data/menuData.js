@@ -1,4 +1,4 @@
-export const categories = ['नाश्ता', 'नमकीन', 'मिठाई']
+export const categories = ['नाश्ता', 'नमकीन', 'मिठाई', 'पेय']
 
 export const menuItems = [
   {
@@ -296,5 +296,19 @@ export const menuItems = [
     price: '₹300 / किलो',
     category: 'मिठाई',
     emoji: '🥥',
+  },
+  {
+    id: 38,
+    name: 'केक',
+    description: 'खास अवसरों के लिए ताज़ा क्रीम और चॉकलेट केक।',
+    category: 'मिठाई',
+    emoji: '🎂',
+  },
+  {
+    id: 39,
+    name: 'लस्सी',
+    description: 'गाढ़ी, ठंडी और मलाईदार पारंपरिक मीठी लस्सी।',
+    category: 'पेय',
+    emoji: '🥛',
   },
 ]
