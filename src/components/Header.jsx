@@ -2,6 +2,12 @@ import Logo from './Logo'
 
 function Header({ language, onToggleLanguage }) {
   const isHindi = language === 'hi'
+  const scrollToSection = (sectionId) => {
+    document.getElementById(sectionId)?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    })
+  }
 
   return (
     <>
@@ -20,12 +26,13 @@ function Header({ language, onToggleLanguage }) {
           </a>
 
           <div className="flex items-center gap-1.5 sm:gap-3">
-            <a
-              href="#brand-story"
+            <button
+              type="button"
+              onClick={() => scrollToSection('brand-story')}
               className="language-button hidden rounded-full px-4 py-2 text-xs font-bold text-emerald-950 transition hover:bg-amber-100 sm:block"
             >
               {isHindi ? 'हमारे बारे में' : 'About Us'}
-            </a>
+            </button>
             <button
               type="button"
               onClick={onToggleLanguage}

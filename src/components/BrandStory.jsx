@@ -2,6 +2,12 @@ import Logo from './Logo'
 
 function BrandStory({ language }) {
   const isHindi = language === 'hi'
+  const scrollToMenu = () => {
+    document.getElementById('menu')?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    })
+  }
 
   return (
     <section
@@ -33,12 +39,13 @@ function BrandStory({ language }) {
           </p>
 
           <div className="mt-7 flex flex-wrap gap-3">
-            <a
-              href="#menu"
+            <button
+              type="button"
+              onClick={scrollToMenu}
               className="language-button rounded-2xl bg-amber-500 px-5 py-3 text-sm font-black text-emerald-950 shadow-xl shadow-amber-950/30 transition hover:-translate-y-1 hover:bg-amber-400"
             >
               {isHindi ? 'मेन्यू पर जाएँ ↑' : 'Back to Menu ↑'}
-            </a>
+            </button>
             <span className="rounded-2xl border border-emerald-400/25 bg-emerald-500/10 px-4 py-3 text-xs font-black uppercase tracking-wider text-emerald-300">
               {isHindi ? '● ताज़ा और शुद्ध' : '● Fresh & Pure'}
             </span>
