@@ -25,8 +25,8 @@ function Footer({ language }) {
       </p>
       <div className="relative mx-auto my-5 h-px max-w-44 bg-gradient-to-r from-transparent via-orange-500/50 to-transparent" />
       <div className="relative flex flex-col items-center gap-2 text-xs font-semibold text-zinc-500">
-        <p>
-          {isHindi ? 'डेवलपर:' : 'Developer:'}{' '}
+        <p className="flex flex-wrap items-center justify-center gap-x-1.5 gap-y-1">
+          <span>{isHindi ? 'डेवलपर:' : 'Developer:'}</span>
           <a
             href={portfolioUrl}
             target="_blank"
@@ -35,9 +35,7 @@ function Footer({ language }) {
           >
             Govind Maithil
           </a>
-        </p>
-        <p>
-          {isHindi ? 'डेवलपर संपर्क:' : 'Developer Contact:'}{' '}
+          <span aria-hidden="true">·</span>
           <a
             href="tel:+918602443526"
             className="font-black text-orange-400 underline decoration-orange-400/30 underline-offset-4 transition hover:text-orange-300"
