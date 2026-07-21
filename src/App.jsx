@@ -5,16 +5,32 @@ import RestaurantDetails from "./components/RestaurantDetails";
 import QRPreview from "./components/QRPreview";
 import Footer from "./components/Footer";
 import BrandStory from "./components/BrandStory";
+import AdminPanel from "./components/AdminPanel";
 import { categories, menuItems } from "./data/menuData";
 import { categoryLabels, englishMenu } from "./data/menuTranslations";
 import { menuImages } from "./data/menuImages";
+
+const MENU_PRICE_ENDPOINTS = ["/api/menu-prices", "/menu-prices.json"];
+
+function getOverridePrice(overrides, itemId, language, fallbackPrice) {
+  const override = overrides[String(itemId)];
+  const priceKey = language === "hi" ? "hi" : "en";
+
+  if (override && Object.hasOwn(override, priceKey)) {
+    return override[priceKey];
+  }
+
+  return fallbackPrice;
+}
 
 function App() {
   const [language, setLanguage] = useState("en");
   const [activeCategory, setActiveCategory] = useState(categories[0]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [priceOverrides, setPriceOverrides] = useState({});
   const [showScrollTop, setShowScrollTop] = useState(false);
   const isHindi = language === "hi";
+  const isAdminRoute = window.location.pathname.startsWith("/admin");
 
   useEffect(() => {
     document.documentElement.lang = language;
@@ -31,11 +47,53 @@ function App() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    let isMounted = true;
+
+    async function loadPriceOverrides() {
+      for (const endpoint of MENU_PRICE_ENDPOINTS) {
+        try {
+          const response = await fetch(`${endpoint}?ts=${Date.now()}`, {
+            cache: "no-store",
+          });
+
+          if (!response.ok) {
+            continue;
+          }
+
+          const data = await response.json();
+
+          if (data?.prices && isMounted) {
+            setPriceOverrides(data.prices);
+            return;
+          }
+        } catch {
+          // Try the next source; production uses the API, local static preview uses JSON.
+        }
+      }
+    }
+
+    loadPriceOverrides();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   const localizedItems = useMemo(
     () =>
       menuItems.map((item) => {
-        const englishItem = englishMenu[item.id];
-        const localizedItem = isHindi ? item : { ...item, ...englishItem };
+        const englishItem = englishMenu[item.id] ?? {};
+        const fallbackPrice = isHindi ? item.price : englishItem.price;
+        const price = getOverridePrice(
+          priceOverrides,
+          item.id,
+          language,
+          fallbackPrice,
+        );
+        const localizedItem = isHindi
+          ? { ...item, price }
+          : { ...item, ...englishItem, price };
 
         return {
           ...localizedItem,
@@ -45,12 +103,14 @@ function App() {
             item.description,
             englishItem.name,
             englishItem.description,
+            price,
           ]
+            .filter(Boolean)
             .join(" ")
             .toLowerCase(),
         };
       }),
-    [isHindi],
+    [isHindi, language, priceOverrides],
   );
 
   const filteredItems = useMemo(() => {
@@ -67,6 +127,10 @@ function App() {
     setLanguage((current) => (current === "en" ? "hi" : "en"));
     setSearchTerm("");
   };
+
+  if (isAdminRoute) {
+    return <AdminPanel />;
+  }
 
   return (
     <div className="site-shell min-h-screen text-zinc-900">
