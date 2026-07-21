@@ -24,7 +24,7 @@ function getOverridePrice(overrides, itemId, language, fallbackPrice) {
 }
 
 function App() {
-  const [language, setLanguage] = useState("en");
+  const [language, setLanguage] = useState("hi");
   const [activeCategory, setActiveCategory] = useState(categories[0]);
   const [searchTerm, setSearchTerm] = useState("");
   const [priceOverrides, setPriceOverrides] = useState({});
