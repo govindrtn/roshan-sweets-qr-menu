@@ -26,6 +26,7 @@ export const menuImages = {
   25: '/images/menu/motichoor-laddu.jpg',
   26: '/images/menu/milk-cake.jpg',
   27: '/images/menu/peda.jpg',
+  40: '/images/menu/peda.jpg',
   28: '/images/menu/kalakand.jpg',
   29: '/images/menu/mawa-barfi.jpg',
   30: '/images/menu/soan-papdi.jpg',
