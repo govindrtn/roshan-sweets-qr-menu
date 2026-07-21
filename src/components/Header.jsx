@@ -42,6 +42,16 @@ function Header({ language, onToggleLanguage }) {
               {isHindi ? 'English' : 'हिंदी'}
             </button>
             <a
+              href="/admin"
+              aria-label={isHindi ? 'रेट अपडेट करें' : 'Update rates'}
+              className="language-button rounded-full border border-amber-200 bg-amber-50 px-3 py-2.5 text-xs font-black text-amber-800 transition duration-300 hover:border-amber-500 hover:bg-amber-100 sm:px-4"
+            >
+              <span className="sm:hidden">{isHindi ? 'रेट' : 'Rate'}</span>
+              <span className="hidden sm:inline">
+                {isHindi ? 'रेट अपडेट' : 'Rate Admin'}
+              </span>
+            </a>
+            <a
               href="tel:+919806323351"
               aria-label={isHindi ? 'कॉल करें' : 'Call now'}
               className="language-button rounded-full bg-emerald-900 px-3 py-2.5 text-xs font-black text-white shadow-lg shadow-emerald-950/20 transition duration-300 hover:-translate-y-0.5 hover:bg-amber-600 sm:px-4"
