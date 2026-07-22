@@ -1,6 +1,6 @@
 import crypto from 'node:crypto'
 
-const DEFAULT_ADMIN_USERNAME = 'admingovind'
+const DEFAULT_ADMIN_USERNAME = '@admin-govind-maithil'
 const DEFAULT_PASSWORD_HASH =
   'd2ac21582174c8c026f57f6282ee4830ae35a667d4f0a86242040b73b92ec981'
 
