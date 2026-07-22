@@ -254,13 +254,14 @@ function AdminPanel() {
     setSavedRows(buildRows());
   }
 
-  function updateRowPrice(id, key, value) {
+  function updateRowPrice(id, value) {
     setRows((currentRows) =>
       currentRows.map((row) =>
         row.id === id
           ? {
               ...row,
-              [key]: value,
+              hiPrice: value,
+              enPrice: value,
             }
           : row,
       ),
@@ -393,7 +394,7 @@ function AdminPanel() {
                 Price editor
               </p>
               <h2 className="mt-1 text-xl font-black text-zinc-950">
-                Hindi aur English dono rates update karein
+                Item ka rate ek hi field se update karein
               </h2>
             </div>
 
@@ -466,7 +467,7 @@ function AdminPanel() {
                 loading="lazy"
               />
 
-              <div className="grid gap-3 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)_minmax(0,1fr)] lg:items-center">
+              <div className="grid gap-3 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:items-center">
                 <div className="min-w-0">
                   <p className="text-base font-black text-zinc-950">
                     {row.hiName}
@@ -481,28 +482,13 @@ function AdminPanel() {
 
                 <label className="grid gap-1.5">
                   <span className="text-xs font-black uppercase tracking-[0.14em] text-zinc-500">
-                    Hindi rate
+                    Rate
                   </span>
                   <input
                     type="text"
                     value={row.hiPrice}
                     onChange={(event) =>
-                      updateRowPrice(row.id, "hiPrice", event.target.value)
-                    }
-                    placeholder="₹..."
-                    className="w-full rounded-2xl border border-orange-200 bg-orange-50/60 px-4 py-3 text-sm font-black outline-none transition focus:border-orange-500 focus:bg-white focus:ring-4 focus:ring-orange-100"
-                  />
-                </label>
-
-                <label className="grid gap-1.5">
-                  <span className="text-xs font-black uppercase tracking-[0.14em] text-zinc-500">
-                    English rate
-                  </span>
-                  <input
-                    type="text"
-                    value={row.enPrice}
-                    onChange={(event) =>
-                      updateRowPrice(row.id, "enPrice", event.target.value)
+                      updateRowPrice(row.id, event.target.value)
                     }
                     placeholder="₹..."
                     className="w-full rounded-2xl border border-orange-200 bg-orange-50/60 px-4 py-3 text-sm font-black outline-none transition focus:border-orange-500 focus:bg-white focus:ring-4 focus:ring-orange-100"
